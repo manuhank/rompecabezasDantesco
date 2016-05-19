@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Rompecabezas Dantesco</title>
+</head>
+<body id="body" style="background-color:#010101; color: #ffffff" onload="redimensionar(), cargaURL()" onresize="redimensionar()">
+
+<!--logo Dantesco-->
+<img style="position: absolute; top: 10px;left: 10px; z-index: 2; max-width:40%;" src="logo.png" id="logo">
+
+<!--logo MPfoto-->
+<a href="https://www.facebook.com/manuelpuentesfotografia/">
+<img style="position:absolute; bottom:0px; left:0px; z-index:2; max-width:40%;left:10px;" src="logoB.png" id="MPFoto">
+</a>
+
+<!--rompecabezas-->
+<div style="position: relative; margin:auto;max-width: 900px;" >
+
+<!--boton al azar-->
+<img style="position: absolute; top: 5%;right: 0px; max-width:100%;cursor:pointer;z-index: 1" src="azr.png" id="botonazar" onclick="azar()">
+
+<div id="pelo" style="position: relative;" onmouseover="mostrar(flechasPelo)" onmouseout="ocultar(flechasPelo)">
+<img style="display:block; margin:auto;cursor:pointer;" src="pelo/1.jpg" class="imagen" id="imgPelo" onclick="cambiarPelo(1)" >
+<div id="flechasPelo" style="display: none;z-index: 1">
+<img style="position: absolute; top: 50%;left: 20%; cursor:pointer" src="izq.png" onclick="cambiarPelo(-1)">
+<img style="position: absolute; top: 50%;right: 20%; cursor:pointer" src="der.png" onclick="cambiarPelo(1)">
+</div>
+</div>
+
+<div id="ojos" style="position: relative;" onmouseover="mostrar(flechasOjos)" onmouseout="ocultar(flechasOjos)">
+<img style="display:block; margin:auto; cursor:pointer;" src="ojos/1.jpg" class="imagen" id="imgOjos" onclick="cambiarOjos(1)" >
+<div id="flechasOjos" style="display: none; z-index: 1">
+<img style="position: absolute; top: 50%;left: 20%; cursor:pointer" src="izq.png" onclick="cambiarOjos(-1)">
+<img style="position: absolute; top: 50%;right: 20%; cursor:pointer" src="der.png" onclick="cambiarOjos(1)">
+</div>
+</div>
+
+<div id="cuerpo" style="position: relative;" onmouseover="mostrar(flechasCuerpo)" onmouseout="ocultar(flechasCuerpo)">
+<img style="display:block; margin:auto; cursor:pointer;" src="cuerpo/1.jpg" class="imagen" id="imgCuerpo" onclick="cambiarCuerpo(1)" >
+<div id="flechasCuerpo" style="display: none; z-index: 1">
+<img style="position: absolute; top: 50%;left: 10%; cursor:pointer" src="izq.png" onclick="cambiarCuerpo(-1)">
+<img style="position: absolute; top: 50%;right: 10%; cursor:pointer" src="der.png" onclick="cambiarCuerpo(1)">
+</div>
+</div>
+
+</div>
+
+<script language="javascript">
+//Numero de caras incluidas
+   var caras = 7
+   var pelo = 1
+   var ojos = 1
+   var cuerpo = 1
+   var imagen = ""
+   
+   function cargaURL(){
+   pelo = obtenerValor("pelo");
+   ojos = obtenerValor("ojos");
+   cuerpo = obtenerValor("cuerpo");
+   cambiarPelo(0);
+   cambiarOjos(0);
+   cambiarCuerpo(0);
+   console.log("el pelo es" + pelo.toString())
+   };
+   
+   function redimensionar() {
+// Toma la proporcion del viewport sobre el contenido fotografico.
+   var h = (document.documentElement.clientHeight)/755
+//Si el viewport es menor al contenido
+   if (h<1){
+//achicamos la proporcion para que no haga scrolling al quedar en el limite
+   h -= 0.023
+//Y le damos esa proporcion al alto de cada imagen
+   imgPelo.style.height = Math.floor(h*303).toString() + "px"
+   imgOjos.style.height = Math.floor(h*182).toString() + "px"
+   imgCuerpo.style.height = Math.floor(h*272).toString() + "px"
+   };
+   };
+
+//muestra y oculta las flechas   
+   function mostrar(x) {
+   x.style.display = 'block';
+   };
+   
+   function ocultar(x) {
+   x.style.display = 'none'
+   };
+
+//funcion para cambiar la imagen. -1 significa atras 1 adelante.   
+   function cambiarPelo(x) {
+	pelo += x
+	if (pelo > caras) {
+		pelo = 1
+	} else if (pelo < 1){
+		pelo = caras
+	}
+	imagen = "pelo/" + pelo.toString() + ".jpg";
+    document.getElementById("imgPelo").src = imagen;    
+   };
+   
+   function cambiarOjos(x) {
+	ojos += x;
+	if (ojos > caras) {
+		ojos = 1
+	} else if (ojos < 1){
+		ojos = caras
+	};
+   	imagen = "ojos/" + ojos.toString() + ".jpg";
+    document.getElementById("imgOjos").src = imagen;    
+   };
+   
+   function cambiarCuerpo(x) {
+	cuerpo += x;
+	if (cuerpo > caras) {
+		cuerpo = 1
+	} else if (cuerpo < 1){
+		cuerpo = caras
+	};
+   	imagen = "cuerpo/" + cuerpo.toString() + ".jpg";
+    document.getElementById("imgCuerpo").src = imagen;    
+   };
+   
+   function azar() {
+   pelo = Math.round(Math.random() * (caras - 1)) + 1;
+   ojos = Math.round(Math.random() * (caras - 1)) + 1;
+   cuerpo = Math.round(Math.random() * (caras - 1)) + 1;
+   cambiarPelo(0);
+   cambiarOjos(0);
+   cambiarCuerpo(0);
+   };
+   
+   function obtenerValor() {
+	var vars = {};
+	var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+	vars[key] = value;
+	});
+	return vars;
+	};
+</script>
+
+</body>
+</html>
