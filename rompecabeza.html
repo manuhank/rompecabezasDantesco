@@ -7,12 +7,12 @@
 <body id="body" bgcolor="#010101" onload="redimensionar()" onresize="redimensionar()">
 
 <!--logo Dantesco-->
-<img style="position: absolute; top: 8px;left: 8px; z-index: 2;" src="logo.png" id="logo">
+<img style="position: absolute; top: 10px;left: 10px; z-index: 2; max-width:40%;" src="logo.png" id="logo">
 
 <!--logo MPfoto-->
 
 <a href="https://www.facebook.com/manuelpuentesfotografia/">
-<img style="display: flow; position:fixed; bottom:0px; left:8px;z-index:2;" src="logoB.png" id="MPFoto">
+<img style="display: flow; position:fixed; bottom:0px; left:10px;z-index:2;max-width:40%;" src="logoB.png" id="MPFoto">
 </a>
 
 <!--rompecabezas-->
@@ -31,7 +31,7 @@
 
 <div id="ojos" style="position: relative;" onmouseover="mostrar(flechasOjos)" onmouseout="ocultar(flechasOjos)">
 <img style="display:block; margin:auto; cursor:pointer;" src="ojos/1.jpg" class="imagen" id="imgOjos" onclick="cambiarOjos(1)" >
-<div id="flechasOjos" style="display: none; margin-left:auto; margin-right:auto; z-index: 1">
+<div id="flechasOjos" style="display: none; z-index: 1">
 <img style="position: absolute; top: 50%;left: 20%; cursor:pointer" src="izq.png" onclick="cambiarOjos(-1)">
 <img style="position: absolute; top: 50%;right: 20%; cursor:pointer" src="der.png" onclick="cambiarOjos(1)">
 </div>
@@ -39,7 +39,7 @@
 
 <div id="cuerpo" style="position: relative;" onmouseover="mostrar(flechasCuerpo)" onmouseout="ocultar(flechasCuerpo)">
 <img style="display:block; margin:auto; cursor:pointer;" src="cuerpo/1.jpg" class="imagen" id="imgCuerpo" onclick="cambiarCuerpo(1)" >
-<div id="flechasCuerpo" style="display: none; margin-left:auto; margin-right:auto; z-index: 1">
+<div id="flechasCuerpo" style="display: none; z-index: 1">
 <img style="position: absolute; top: 50%;left: 10%; cursor:pointer" src="izq.png" onclick="cambiarCuerpo(-1)">
 <img style="position: absolute; top: 50%;right: 10%; cursor:pointer" src="der.png" onclick="cambiarCuerpo(1)">
 </div>
@@ -56,14 +56,20 @@
    var imagen = ""
    
    function redimensionar() {
-   var h = document.documentElement.clientHeight/755
+// Toma la proporcion del viewport sobre el contenido fotografico.
+   var h = (document.documentElement.clientHeight)/755
+//Si el viewport es menor al contenido
    if (h<1){
+//achicamos la proporcion para que no haga scrolling al quedar en el limite
+   h -= 0.023
+//Y le damos esa proporcion al alto de cada imagen
    imgPelo.style.height = Math.floor(h*303).toString() + "px"
    imgOjos.style.height = Math.floor(h*182).toString() + "px"
    imgCuerpo.style.height = Math.floor(h*272).toString() + "px"
    };
    };
-   
+
+//muestra y oculta las flechas   
    function mostrar(x) {
    x.style.display = 'block';
    };
@@ -71,7 +77,8 @@
    function ocultar(x) {
    x.style.display = 'none'
    };
-   
+
+//funcion para cambiar la imagen. -1 significa atras 1 adelante.   
    function cambiarPelo(x) {
 	pelo += x
 	if (pelo > caras) {
