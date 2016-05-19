@@ -4,15 +4,14 @@
 <meta charset="UTF-8">
 <title>Rompecabezas Dantesco</title>
 </head>
-<body id="body" bgcolor="#010101" onload="redimensionar()" onresize="redimensionar()">
+<body id="body" style="background-color:#010101; color: #ffffff" onload="redimensionar(),  cambiarPelo(0); cambiarOjos(0); cambiarCuerpo(0)" onresize="redimensionar()">
 
 <!--logo Dantesco-->
 <img style="position: absolute; top: 10px;left: 10px; z-index: 2; max-width:40%;" src="logo.png" id="logo">
 
 <!--logo MPfoto-->
-
 <a href="https://www.facebook.com/manuelpuentesfotografia/">
-<img style="display: flow; position:fixed; bottom:0px; left:10px;z-index:2;max-width:40%;" src="logoB.png" id="MPFoto">
+<img style="position:absolute; bottom:0px; left:0px; z-index:2; max-width:40%;left:10px;" src="logoB.png" id="MPFoto">
 </a>
 
 <!--rompecabezas-->
@@ -50,10 +49,22 @@
 <script language="javascript">
 //Numero de caras incluidas
    var caras = 7
-   var pelo = 1
-   var ojos = 1
-   var cuerpo = 1
-   var imagen = ""
+   var pelo = cargaURL("pelo", 1)
+   var ojos = cargaURL("ojos", 1)
+   var cuerpo = cargaURL("cuerpo", 1)
+   
+   function cargaURL(x, esNum){
+	if (window.location.search.substring(1)){
+	if (obtenerValor(x, esNum)){
+	console.log(x.toString() + " es " + obtenerValor(x, esNum));
+	return obtenerValor(x, esNum);
+	} else {
+   return 1
+   }
+	}else {
+   return 1
+   };
+   };
    
    function redimensionar() {
 // Toma la proporcion del viewport sobre el contenido fotografico.
@@ -121,6 +132,23 @@
    cambiarCuerpo(0);
    };
    
+   function obtenerValor(variable,esNum){
+       var url = window.location.search.substring(1);
+       var vars = url.split("&");
+       for (var i=0;i<vars.length;i++) {
+               var par = vars[i].split("=");
+               if(par[0] == variable){
+					if(esNum){
+					return parseInt(par[1]);
+					console.log(parseInt(par[1]))
+					}
+					else {
+						return par[1]
+						};
+				
+				};
+       };
+};
 </script>
 
 </body>
