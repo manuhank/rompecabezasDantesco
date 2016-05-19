@@ -4,38 +4,44 @@
 <meta charset="UTF-8">
 <title>Rompecabezas Dantesco</title>
 </head>
-<body id="body" bgcolor="#010101">
+<body id="body" bgcolor="#010101" onload="redimensionar()" onresize="redimensionar()">
 
-<!--logo-->
-<img style="position: absolute; top: 8px;left: 8px; max-width:100%; z-index: 2;" src="logo.png" alt="" id="logo">
+<!--logo Dantesco-->
+<img style="position: absolute; top: 8px;left: 8px; z-index: 2;" src="logo.png" id="logo">
+
+<!--logo MPfoto-->
+
+<a href="https://www.facebook.com/manuelpuentesfotografia/">
+<img style="display: flow; position:fixed; bottom:0px; left:8px;z-index:2;" src="logoB.png" id="MPFoto">
+</a>
 
 <!--rompecabezas-->
-<div style="position: relative; margin-left:auto; margin-right:auto;max-width: 900px; max-height: 755px;" >
+<div style="position: relative; margin:auto;max-width: 900px;" >
 
 <!--boton al azar-->
-<img style="position: absolute; top: 5px;right: 0px; max-width:100%;cursor:pointer;z-index: 1" src="azr.png" alt="" id="botonazar" onclick="azar()">
+<img style="position: absolute; top: 5%;right: 0px; max-width:100%;cursor:pointer;z-index: 1" src="azr.png" id="botonazar" onclick="azar()">
 
-<div id="pelo" style="display:block; position: relative;" onmouseover="mostrar(flechasPelo)" onmouseout="ocultar(flechasPelo)">
-<img style="display:block; max-width:100%;cursor:pointer;" src="pelo/1.jpg" alt="" id="imgPelo" onclick="cambiarPelo(1)" >
+<div id="pelo" style="position: relative;" onmouseover="mostrar(flechasPelo)" onmouseout="ocultar(flechasPelo)">
+<img style="display:block; margin:auto;cursor:pointer;" src="pelo/1.jpg" class="imagen" id="imgPelo" onclick="cambiarPelo(1)" >
 <div id="flechasPelo" style="display: none;z-index: 1">
-<img style="position: absolute; top: 50%;left: 20%; cursor:pointer" src="izq.png" alt="" onclick="cambiarPelo(-1)">
-<img style="position: absolute; top: 50%;right: 20%; cursor:pointer" src="der.png" alt="" onclick="cambiarPelo(1)">
+<img style="position: absolute; top: 50%;left: 20%; cursor:pointer" src="izq.png" onclick="cambiarPelo(-1)">
+<img style="position: absolute; top: 50%;right: 20%; cursor:pointer" src="der.png" onclick="cambiarPelo(1)">
 </div>
 </div>
 
-<div id="ojos" style="display:block; position: relative;" onmouseover="mostrar(flechasOjos)" onmouseout="ocultar(flechasOjos)">
-<img style="display:block; max-width:100%;cursor:pointer;" src="ojos/1.jpg" alt="" id="imgOjos" onclick="cambiarOjos(1)" >
-<div id="flechasOjos" style="display: none; margin-left:auto; margin-right:auto; max-width: 900px; z-index: 1">
-<img style="position: absolute; top: 50%;left: 20%; cursor:pointer" src="izq.png" alt="" onclick="cambiarOjos(-1)">
-<img style="position: absolute; top: 50%;right: 20%; cursor:pointer" src="der.png" alt="" onclick="cambiarOjos(1)">
+<div id="ojos" style="position: relative;" onmouseover="mostrar(flechasOjos)" onmouseout="ocultar(flechasOjos)">
+<img style="display:block; margin:auto; cursor:pointer;" src="ojos/1.jpg" class="imagen" id="imgOjos" onclick="cambiarOjos(1)" >
+<div id="flechasOjos" style="display: none; margin-left:auto; margin-right:auto; z-index: 1">
+<img style="position: absolute; top: 50%;left: 20%; cursor:pointer" src="izq.png" onclick="cambiarOjos(-1)">
+<img style="position: absolute; top: 50%;right: 20%; cursor:pointer" src="der.png" onclick="cambiarOjos(1)">
 </div>
 </div>
 
-<div id="cuerpo" style="display:block; position: relative;" onmouseover="mostrar(flechasCuerpo)" onmouseout="ocultar(flechasCuerpo)">
-<img style="display:block; max-width:100%;cursor:pointer;" src="cuerpo/1.jpg" alt="" id="imgCuerpo" onclick="cambiarCuerpo(1)" >
-<div id="flechasCuerpo" style="display: none; margin-left:auto; margin-right:auto; max-width: 900px; z-index: 1">
-<img style="position: absolute; top: 50%;left: 10%; cursor:pointer" src="izq.png" alt="" onclick="cambiarCuerpo(-1)">
-<img style="position: absolute; top: 50%;right: 10%; cursor:pointer" src="der.png" alt="" onclick="cambiarCuerpo(1)">
+<div id="cuerpo" style="position: relative;" onmouseover="mostrar(flechasCuerpo)" onmouseout="ocultar(flechasCuerpo)">
+<img style="display:block; margin:auto; cursor:pointer;" src="cuerpo/1.jpg" class="imagen" id="imgCuerpo" onclick="cambiarCuerpo(1)" >
+<div id="flechasCuerpo" style="display: none; margin-left:auto; margin-right:auto; z-index: 1">
+<img style="position: absolute; top: 50%;left: 10%; cursor:pointer" src="izq.png" onclick="cambiarCuerpo(-1)">
+<img style="position: absolute; top: 50%;right: 10%; cursor:pointer" src="der.png" onclick="cambiarCuerpo(1)">
 </div>
 </div>
 
@@ -48,6 +54,15 @@
    var ojos = 1
    var cuerpo = 1
    var imagen = ""
+   
+   function redimensionar() {
+   var h = document.documentElement.clientHeight/755
+   if (h<1){
+   imgPelo.style.height = Math.floor(h*303).toString() + "px"
+   imgOjos.style.height = Math.floor(h*182).toString() + "px"
+   imgCuerpo.style.height = Math.floor(h*272).toString() + "px"
+   };
+   };
    
    function mostrar(x) {
    x.style.display = 'block';
