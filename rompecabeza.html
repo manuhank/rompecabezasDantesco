@@ -4,59 +4,82 @@
 <meta charset="UTF-8">
 <title>Rompecabezas Dantesco</title>
 </head>
-<body id="body" style="background-color:#010101; color: #ffffff" onload="redimensionar(),  cambiarPelo(0); cambiarOjos(0); cambiarCuerpo(0); scriptPrecarga()" onresize="redimensionar()">
+<body id="body" style="background-color:#010101; color: #ffffff" onload="cambiarPelo(0); cambiarOjos(0); cambiarCuerpo(0); cambiarColor(0), scriptPrecarga()">
 
 
 <!--logo Dantesco-->
-<img style="position: absolute; top: 10px;left: 10px; z-index: 2; max-width:40%;" src="logo.png" id="logo">
+<img style="position: absolute; left: 0px; z-index: 3; max-width:40%;" src="logo.png" id="logo">
 
-<!--logo MPfoto-->
+<!--barra lateral-->
+<div style="display: block; position: absolute; right: 0; top:0; bottom: 0;width: 25vh; max-width: 200px; max-height: 770px;z-index: 3; background-color: rgba(01,01,01,0.4);">
+<!--boton al azar--><tag></tag>
+<img style="display: block; cursor:pointer;margin: 15px auto 0 auto;max-width: 100%;" src="azr.png" id="botonazar" onclick="azar()">
 
+<div id="divisor" style="display: block;background-color: #ffffff; height: 2px; margin: 3vh 0px 3vh 0px;"></div>
 
+<img style="display: block; margin: 15px auto 0 auto;max-width: 100%;" src="colorea.png">
+<!--botones de color-->
+<div style="display: block; z-index: 2;margin: 20px 0 0 3%">
+<div style="display: inline-block; height: 5vh;width: 5vh;max-height: 45px;max-width: 45px;cursor:pointer;background-color: white; border-radius: 5vh;" onclick="cambiarColor('white')"></div>
+<div style="display: inline-block; height: 5vh;width: 5vh;max-height: 45px;max-width: 45px;cursor:pointer;background-color: red;border-radius: 24px;" onclick="cambiarColor('red')"></div>
+<div style="display: inline-block; height: 5vh;width: 5vh;max-height: 45px;max-width: 45px;cursor:pointer;background-color: purple;border-radius: 24px;" onclick="cambiarColor('purple')"></div>
+<div style="display: inline-block; height: 5vh;width: 5vh;max-height: 45px;max-width: 45px;cursor:pointer;background-color: blue;border-radius: 24px;" onclick="cambiarColor('blue')"></div>
+<div style="display: inline-block; height: 5vh;width: 5vh;max-height: 45px;max-width: 45px;cursor:pointer;background-color: cyan;border-radius: 24px;" onclick="cambiarColor('cyan')"></div>
+<div style="display: inline-block; height: 5vh;width: 5vh;max-height: 45px;max-width: 45px;cursor:pointer;background-color: green;border-radius: 24px;" onclick="cambiarColor('green')"></div>
+<div style="display: inline-block; height: 5vh;width: 5vh;max-height: 45px;max-width: 45px;cursor:pointer;background-color: yellow;border-radius: 24px;" onclick="cambiarColor('yellow')"></div>
+<div style="display: inline-block; height: 5vh;width: 5vh;max-height: 45px;max-width: 45px;cursor:pointer;background-color: orange;border-radius: 24px;" onclick="cambiarColor('orange')"></div>
+</div>
+<div id="divisor2" style="display: block;background-color: #ffffff; height: 2px; margin: 3vh 0px 3vh 0px;"></div>
+<div style="display: block; z-index: 2;margin: 20px 0 0 3%">
+<!--Integracion redes sociales-->
+<img style="display: block; margin: 0 auto 0 auto;max-width: 90%;" src="compartir.png" onclick="window.open(crearURL('https://www.facebook.com/sharer/sharer.php?u='), 'height=200,width=150')" alt="" />
+<div style="display: block; margin: 2vh auto 0 auto;">
+<img style="display: inline-block;cursor: pointer; margin: 5px;height: 5vh;width: 5vh;max-height: 48px;max-width: 48px;;" src="compartir/Facebook.png" onclick="window.open(crearURL('https://www.facebook.com/sharer/sharer.php?u='), 'height=200,width=150')" alt="" />
+<img style="display: inline-block;cursor: pointer; margin: 5px; height: 5vh;width: 5vh;max-height: 40px;max-width: 48px;" src="compartir/Twitter.png" onclick="window.open(crearURL('https://twitter.com/intent/tweet?ref_src=twsrc%5Etfw&text=%C2%A1Est%C3%A1%20vivo!&tw_p=tweetbutton&url='))" alt="" />
+<img style="display: inline-block;cursor: pointer; margin: 5px;height: 5vh;width: 5vh;max-height: 48px;max-width: 48px;" src="compartir/Whatsapp.png" onclick="window.open(crearURL('whatsapp://send?text='))" alt="" />
+</div>
+</div>
+<!--logo mpfoto-->
+<a href="https://www.facebook.com/manuelpuentesfotografia/">
+<img style="display: block; position: absolute; bottom:2px; max-width:90%;" src="logoB.png" id="MPFoto">
+</a>
+</div>
 <!--rompecabezas-->
 <div style="position: relative; margin:auto;max-width: 900px;" >
 
-<!--boton al azar-->
-<img style="position: absolute; top: 5%;right: 0px; max-width:100%;cursor:pointer;z-index: 1" src="azr.png" id="botonazar" onclick="azar()">
+<!--coloreado-->
+<div id="coloreado" style="position: absolute;top: -5px; bottom: -5px; left: -5px; right: -5px;background-color: white;opacity: 0.4; z-index: 1;mix-blend-mode: multiply; pointer-events: none;"></div>
 
-<div id="pelo" style="position: relative;" onmouseover="mostrar(flechasPelo)" onmouseout="ocultar(flechasPelo)">
-<img style="display:block; margin:auto;cursor:pointer;" src="pelo/1.jpg" class="imagen" id="imgPelo" onclick="cambiarPelo(1)" >
-<div id="flechasPelo" style="display: none;z-index: 1">
-<img style="position: absolute; top: 50%;left: 20%; cursor:pointer" src="izq.png" onclick="cambiarPelo(-1)">
-<img style="position: absolute; top: 50%;right: 20%; cursor:pointer" src="der.png" onclick="cambiarPelo(1)">
+<div id="pelo" style="position: relative; " onmouseover="mostrar(flechasPelo)" onmouseout="ocultar(flechasPelo)">
+<img style="display:block; margin:auto; max-width: 118vh;cursor:pointer; " src="pelo/1.jpg" class="imagen" id="imgPelo" onclick="cambiarPelo(1)" >
+<div id="flechasPelo" style="display: none;z-index: 2">
+<img style="position: absolute; top: 50%;left: 20%; cursor:pointer;z-index: 2" src="izq.png" onclick="cambiarPelo(-1)">
+<img style="position: absolute; top: 50%;right: 20%; cursor:pointer;z-index: 2" src="der.png" onclick="cambiarPelo(1)">
 </div>
 </div>
 
 <div id="ojos" style="position: relative;" onmouseover="mostrar(flechasOjos)" onmouseout="ocultar(flechasOjos)">
-<img style="display:block; margin:auto; cursor:pointer;" src="ojos/1.jpg" class="imagen" id="imgOjos" onclick="cambiarOjos(1)" >
-<div id="flechasOjos" style="display: none; z-index: 1">
-<img style="position: absolute; top: 50%;left: 20%; cursor:pointer" src="izq.png" onclick="cambiarOjos(-1)">
-<img style="position: absolute; top: 50%;right: 20%; cursor:pointer" src="der.png" onclick="cambiarOjos(1)">
+<img style="display:block; margin:auto; cursor:pointer;max-width: 118vh;" src="ojos/1.jpg" class="imagen" id="imgOjos" onclick="cambiarOjos(1)" >
+<div id="flechasOjos" style="display: none; z-index: 2">
+<img style="position: absolute; top: 50%;left: 20%; cursor:pointer;z-index: 2" src="izq.png" onclick="cambiarOjos(-1)">
+<img style="position: absolute; top: 50%;right: 20%; cursor:pointer;z-index: 2" src="der.png" onclick="cambiarOjos(1)">
 </div>
 </div>
 
 <div id="cuerpo" style="position: relative;" onmouseover="mostrar(flechasCuerpo)" onmouseout="ocultar(flechasCuerpo)">
-<img style="display:block; margin:auto; cursor:pointer;" src="cuerpo/1.jpg" class="imagen" id="imgCuerpo" onclick="cambiarCuerpo(1)" >
-<div id="flechasCuerpo" style="display: none; z-index: 1">
-<img style="position: absolute; top: 50%;left: 10%; cursor:pointer" src="izq.png" onclick="cambiarCuerpo(-1)">
-<img style="position: absolute; top: 50%;right: 10%; cursor:pointer" src="der.png" onclick="cambiarCuerpo(1)">
+<img style="display:block; margin:auto; cursor:pointer;max-width: 118vh;" src="cuerpo/1.jpg" class="imagen" id="imgCuerpo" onclick="cambiarCuerpo(1)" >
+<div id="flechasCuerpo" style="display: none; z-index: 2">
+<img style="position: absolute; top: 50%;left: 10%; cursor:pointer;z-index: 2" src="izq.png" onclick="cambiarCuerpo(-1)">
+<img style="position: absolute; top: 50%;right: 10%; cursor:pointer;z-index: 2" src="der.png" onclick="cambiarCuerpo(1)">
 </div>
 </div>
 
 </div>
+
 
 <!--pie de pagina-->
-<div id="" style="position: fixed; left: 0px; bottom: 0;z-index: 2;width: 100%; background-color: rgba(01,01,01,0.4)">
-<a href="https://www.facebook.com/manuelpuentesfotografia/">
-<img style="position: absolute; bottom:0px; max-width:30%;left:10px;" src="logoB.png" id="MPFoto">
-</a>
-<!--Integracion redes sociales-->
-<div style="display: flex; justify-content: center; align-items: center; float: right;margin: 10px;">
-<p style="display: inline-block;font-family:arial;font-size: 20px;margin: 5px;">Compartí tu creación:</p>
-<img style="display: inline-block;cursor: pointer; margin: 5px;max-width:10%" src="compartir/Facebook.png" onclick="window.open(crearURL('https://www.facebook.com/sharer/sharer.php?u='))" alt="" />
-<img style="display: inline-block;cursor: pointer; margin: 5px;max-width:10%" src="compartir/Twitter.png" onclick="window.open(crearURL('https://twitter.com/intent/tweet?ref_src=twsrc%5Etfw&text=%C2%A1Est%C3%A1%20vivo!&tw_p=tweetbutton&url='))" alt="" />
-<img style="display: inline-block;cursor: pointer; margin: 5px;max-width:10%" src="compartir/Whatsapp.png" onclick="window.open(crearURL('whatsapp://send?text='))" alt="" />
-</div>
+<div id="" style="position: fixed; left: 0px; bottom: 0;z-index: 3;width: 100%; background-color: rgba(01,01,01,0.4)">
+
 </div>
 <!--precarga-->
 <img style=" display: none;"src="" id="precargaImg" />
@@ -68,6 +91,7 @@ var caras = 7
 var pelo = cargaURL("pelo", 1)
 var ojos = cargaURL("ojos", 1)
 var	cuerpo = cargaURL("cuerpo", 1)
+var color = cargaURL("color", 0)
 
 
 function scriptPrecarga() {
@@ -104,20 +128,6 @@ function obtenerValor(variable,esNum){
 			};
 	};
    };
-       
-   function redimensionar() {
-// Toma la proporcion del viewport sobre el contenido fotografico.
-   var h = (document.documentElement.clientHeight)/755
-//Si el viewport es menor al contenido
-   if (h<1){
-//achicamos la proporcion para que no haga scrolling al quedar en el limite
-   h -= 0.022
-//Y le damos esa proporcion al alto de cada imagen
-   imgPelo.style.height = Math.floor(h*303).toString() + "px"
-   imgOjos.style.height = Math.floor(h*182).toString() + "px"
-   imgCuerpo.style.height = Math.floor(h*272).toString() + "px"
-   };
-   };
 
 //muestra y oculta las flechas   
    function mostrar(x) {
@@ -136,7 +146,7 @@ function obtenerValor(variable,esNum){
 	} else if (pelo < 1){
 		pelo = caras
 	};
-    document.getElementById("imgPelo").src = "pelo/" + pelo.toString() + ".jpg";    
+    imgPelo.src = "pelo/" + pelo.toString() + ".jpg";    
    };
    
    function cambiarOjos(x) {
@@ -146,7 +156,7 @@ function obtenerValor(variable,esNum){
 	} else if (ojos < 1){
 		ojos = caras
 	};
-    document.getElementById("imgOjos").src = "ojos/" + ojos.toString() + ".jpg";    
+    imgOjos.src = "ojos/" + ojos.toString() + ".jpg";    
    };
    
    function cambiarCuerpo(x) {
@@ -156,9 +166,17 @@ function obtenerValor(variable,esNum){
 	} else if (cuerpo < 1){
 		cuerpo = caras
 	};
-    document.getElementById("imgCuerpo").src = "cuerpo/" + cuerpo.toString() + ".jpg";    
+    imgCuerpo.src = "cuerpo/" + cuerpo.toString() + ".jpg";    
    };
 //genera un numero natural al azar entre 1 y la cantidad de caras.   
+   
+   function cambiarColor(x) {
+   if (x) {
+   	color = x
+   };
+   coloreado.style.backgroundColor = color
+   };
+   
    function azar() {
    pelo = Math.round(Math.random() * (caras - 1)) + 1;
    ojos = Math.round(Math.random() * (caras - 1)) + 1;
@@ -169,7 +187,7 @@ function obtenerValor(variable,esNum){
    };
    
 function crearURL(x) {
-return x + window.location.href.split('?')[0] + "%3Fpelo%3D3" + pelo.toString() + "%26ojos%3D4" + ojos.toString() + "%26cuerpo%3D5" + cuerpo.toString();
+return x + window.location.href.split('?')[0] + "%3Fpelo%3D" + pelo.toString() + "%26ojos%3D" + ojos.toString() + "%26cuerpo%3D" + cuerpo.toString() + "%26color%3D" + color.toString();
 
 };
 </script>
