@@ -73,11 +73,8 @@ var	cuerpo = cargaURL("cuerpo", 1)
 function scriptPrecarga() {
 	for (var i = 1; i <= caras; i++) {
 		document.getElementById("precargaImg").src = "pelo/" + i.toString() + ".jpg";
-		console.log("cargado pelo/" + i.toString() + ".jpg")
 		document.getElementById("precargaImg").src = "ojos/" + i.toString() + ".jpg";
-		console.log("cargado ojos/" + i.toString() + ".jpg")
 		document.getElementById("precargaImg").src = "cuerpo/" + i.toString() + ".jpg";
-		console.log("cargado cuerpo/" + i.toString() + ".jpg")
 	};
 };
 // Esta funcion se fija si hay variables en la URL, y llama a obtenerValor pararecuperar valores no nulos
