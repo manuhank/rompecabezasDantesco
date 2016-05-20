@@ -4,7 +4,10 @@
 <meta charset="UTF-8">
 <title>Rompecabezas Dantesco</title>
 </head>
-<body id="body" style="background-color:#010101; color: #ffffff" onload="redimensionar(), cargaURL()" onresize="redimensionar()">
+<body id="body" style="background-color:#010101; color: #ffffff" onload="redimensionar(),  cambiarPelo(0); cambiarOjos(0); cambiarCuerpo(0);" onresize="redimensionar()">
+
+<!--Integracion facebook-->
+<img style="position: fixed; bottom: 0px; right: 0px;cursor: pointer;" src="compartir/facebook.png" onclick="window.open(crearURL('https://www.facebook.com/sharer/sharer.php?u='))" alt="" />
 
 <!--logo Dantesco-->
 <img style="position: absolute; top: 10px;left: 10px; z-index: 2; max-width:40%;" src="logo.png" id="logo">
@@ -48,22 +51,40 @@
 
 <script language="javascript">
 //Numero de caras incluidas
-   var caras = 7
-   var pelo = 1
-   var ojos = 1
-   var cuerpo = 1
-   var imagen = ""
+var caras = 7
+//estas variables cargan sus valores de la URL, si esta disponible.
+var pelo = cargaURL("pelo", 1)
+var ojos = cargaURL("ojos", 1)
+var	cuerpo = cargaURL("cuerpo", 1)
    
-   function cargaURL(){
-   pelo = obtenerValor("pelo");
-   ojos = obtenerValor("ojos");
-   cuerpo = obtenerValor("cuerpo");
-   cambiarPelo(0);
-   cambiarOjos(0);
-   cambiarCuerpo(0);
-   console.log("el pelo es" + pelo.toString())
+// Esta funcion se fija si hay variables en la URL, y llama a obtenerValor pararecuperar valores no nulos
+function cargaURL(x, esNum){
+	if (window.location.search.substring(1)){
+		if (obtenerValor(x, esNum)){
+			return obtenerValor(x, esNum);
+		} else {
+   			return 1;
+   		};
+	} else {
+   		return 1;
    };
-   
+};
+// Divide la url en variables y las devuelve como numero o string
+function obtenerValor(variable,esNum){
+   var url = window.location.search.substring(1);
+   var vars = url.split("&");
+   for (var i=0;i<vars.length;i++) {
+           var par = vars[i].split("=");
+           if(par[0] == variable){
+				if(esNum){
+				return parseInt(par[1]);
+				} else {
+					return par[1]
+				};
+			};
+	};
+   };
+       
    function redimensionar() {
 // Toma la proporcion del viewport sobre el contenido fotografico.
    var h = (document.documentElement.clientHeight)/755
@@ -120,7 +141,7 @@
    	imagen = "cuerpo/" + cuerpo.toString() + ".jpg";
     document.getElementById("imgCuerpo").src = imagen;    
    };
-   
+//genera un numero natural al azar entre 1 y la cantidad de caras.   
    function azar() {
    pelo = Math.round(Math.random() * (caras - 1)) + 1;
    ojos = Math.round(Math.random() * (caras - 1)) + 1;
@@ -130,13 +151,9 @@
    cambiarCuerpo(0);
    };
    
-   function obtenerValor() {
-	var vars = {};
-	var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
-	vars[key] = value;
-	});
-	return vars;
-	};
+function crearURL(x) {
+return x + window.location.pathname + "?pelo=" + pelo.toString() + "&ojos=" + ojos.toString() + "&cuerpo=" + cuerpo.toString();
+};
 </script>
 
 </body>
