@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <title>Rompecabezas Dantesco</title>
 </head>
-<body id="body" style="background-color:#010101; color: #ffffff" onload="cambiarPelo(0); cambiarOjos(0); cambiarCuerpo(0); cambiarColor(0), scriptPrecarga()">
+<body id="body" style="background-color:#010101; color: #ffffff" onload="cambiarPelo(0); cambiarOjos(0); cambiarCuerpo(0); cambiarColor(0)">
 
 
 <!--logo Dantesco-->
@@ -77,14 +77,6 @@
 
 </div>
 
-
-<!--pie de pagina-->
-<div id="" style="position: fixed; left: 0px; bottom: 0;z-index: 3;width: 100%; background-color: rgba(01,01,01,0.4)">
-
-</div>
-<!--precarga-->
-<img style=" display: none;"src="" id="precargaImg" />
-
 <script language="javascript">
 //Numero de caras incluidas
 var caras = 7
@@ -94,14 +86,6 @@ var ojos = cargaURL("ojos", 1)
 var	cuerpo = cargaURL("cuerpo", 1)
 var color = cargaURL("color", 0)
 
-
-function scriptPrecarga() {
-	for (var i = 1; i <= caras; i++) {
-		document.getElementById("precargaImg").src = "pelo/" + i.toString() + ".jpg";
-		document.getElementById("precargaImg").src = "ojos/" + i.toString() + ".jpg";
-		document.getElementById("precargaImg").src = "cuerpo/" + i.toString() + ".jpg";
-	};
-};
 // Esta funcion se fija si hay variables en la URL, y llama a obtenerValor pararecuperar valores no nulos
 function cargaURL(x, esNum){
 	if (window.location.search.substring(1)){
@@ -114,6 +98,7 @@ function cargaURL(x, esNum){
    		return 1;
    };
 };
+
 // Divide la url en variables y las devuelve como numero o string
 function obtenerValor(variable,esNum){
    var url = window.location.search.substring(1);
