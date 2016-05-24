@@ -2,22 +2,26 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta property="og:type"  content="article"/>
+<meta property="og:title"   content="El rompecabezas dantesco"/>
+<meta property="og:description"  content="Creá tu propia cabeza y compartila con tus amigos"/>
+<meta property="og:image" content="https://rawgit.com/manuhank/rompecabezasDantesco/master/ui/ogthumb.jgp">
 <title>Rompecabezas Dantesco</title>
 </head>
 <body id="body" style="background-color:#010101; color: #ffffff" onload="cambiarPelo(0); cambiarOjos(0); cambiarCuerpo(0); cambiarColor(0)">
 
 
 <!--logo Dantesco-->
-<img style="position: absolute; left: 0px; z-index: 3; max-width:40%;" src="logo.png" id="logo">
+<img style="position: absolute; left: 0px; z-index: 3; max-width:40%;" src="ui/logo.png" id="logo">
 
 <!--barra lateral-->
 <div style="display: block; position: absolute; right: 0; top:0; bottom: 0;width: 25vh; max-width: 200px; max-height: 770px;z-index: 3; background-color: rgba(01,01,01,0.4); padding-right: 18px;padding-left: 18px;">
 <!--boton al azar--><tag></tag>
-<img style="display: block; cursor:pointer;margin: 15px auto 0 auto;max-width: 100%;" src="azr.png" id="botonazar" onclick="azar()">
+<img style="display: block; cursor:pointer;margin: 15px auto 0 auto;max-width: 100%;" src="ui/azr.png" id="botonazar" onclick="azar()">
 
 <div id="divisor" style="display: block;background-color: #ffffff; height: 2px; margin: 3vh 0px 3vh 0px;"></div>
 
-<img style="display: block; margin: 15px auto 0 auto;max-width: 100%;" src="colorea.png">
+<img style="display: block; margin: 15px auto 0 auto;max-width: 100%;" src="ui/colorea.png">
 <!--botones de color-->
 <div style="display: block; z-index: 2;margin: 20px 0 0 3%">
 <div style="display: inline-block; height: 5vh;width: 5vh;max-height: 45px;max-width: 45px;cursor:pointer;background-color: white; border-radius: 5vh;" onclick="cambiarColor('white')"></div>
@@ -32,16 +36,16 @@
 <div id="divisor2" style="display: block;background-color: #ffffff; height: 2px; margin: 3vh 0px 3vh 0px;"></div>
 <div style="display: block; z-index: 2;margin: 20px 0 0 3%">
 <!--Integracion redes sociales-->
-<img style="display: block; margin: 0 auto 0 auto;max-width: 90%;" src="compartir.png" onclick="window.open(crearURL('https://www.facebook.com/sharer/sharer.php?u='), 'height=200,width=150')" alt="" />
+<img style="display: block; margin: 0 auto 0 auto;max-width: 90%;" src="ui/compartir.png" onclick="window.open(crearURL('https://www.facebook.com/sharer/sharer.php?u='), 'height=200,width=150')" alt="" />
 <div style="display: flex; margin: 0 auto 0 auto; justify-content: center;">
-<img style="display: inline-block;cursor: pointer; margin: 5px;height: 5vh;width: 5vh;max-height: 48px;max-width: 48px;;" src="compartir/Facebook.png" onclick="window.open(crearURL('https://www.facebook.com/sharer/sharer.php?u='), 'height=200,width=150')" alt="" />
-<img style="display: inline-block;cursor: pointer; margin: 5px; height: 5vh;width: 5vh;max-height: 48px;max-width: 48px;" src="compartir/Twitter.png" onclick="window.open(crearURL('https://twitter.com/intent/tweet?ref_src=twsrc%5Etfw&text=%C2%A1Est%C3%A1%20vivo!&tw_p=tweetbutton&url='))" alt="" />
-<img style="display: inline-block;cursor: pointer; margin: 5px;height: 5vh;width: 5vh;max-height: 48px;max-width: 48px;" src="compartir/Whatsapp.png" onclick="window.open(crearURL('whatsapp://send?text='))" alt="" />
+<img style="display: inline-block;cursor: pointer; margin: 5px;height: 5vh;width: 5vh;max-height: 48px;max-width: 48px;;" src="ui/compartir/Facebook.png" onclick="window.open(crearURL('https://www.facebook.com/sharer/sharer.php?u='), 'height=200,width=150')" alt="" />
+<img style="display: inline-block;cursor: pointer; margin: 5px; height: 5vh;width: 5vh;max-height: 48px;max-width: 48px;" src="ui/compartir/Twitter.png" onclick="window.open(crearURL('https://twitter.com/intent/tweet?ref_src=twsrc%5Etfw&text=%C2%A1Est%C3%A1%20vivo!&tw_p=tweetbutton&url='))" alt="" />
+<img style="display: inline-block;cursor: pointer; margin: 5px;height: 5vh;width: 5vh;max-height: 48px;max-width: 48px;" src="ui/compartir/Whatsapp.png" onclick="window.open(crearURL('whatsapp://send?text='))" alt="" />
 </div>
 </div>
 <!--logo mpfoto-->
 <a href="https://www.facebook.com/puentesfotografia/">
-<img style="display: block; position: absolute; bottom:2px; max-width:90%;" src="logoB.png" id="MPFoto">
+<img style="display: block; position: absolute; bottom:2px; max-width:90%;" src="ui/logoPF.png" id="MPFoto">
 </a>
 </div>
 
@@ -54,24 +58,24 @@
 <div id="pelo" style="position: relative; " onmouseover="mostrar(flechasPelo)" onmouseout="ocultar(flechasPelo)">
 <img style="display:block; margin:auto; max-width: 116vh;cursor:pointer; " src="pelo/1.jpg" class="imagen" id="imgPelo" onclick="cambiarPelo(1)" >
 <div id="flechasPelo" style="display: none;z-index: 2">
-<img style="position: absolute; top: 50%;left: 20%; cursor:pointer;z-index: 2" src="izq.png" onclick="cambiarPelo(-1)">
-<img style="position: absolute; top: 50%;right: 20%; cursor:pointer;z-index: 2" src="der.png" onclick="cambiarPelo(1)">
+<img style="position: absolute; top: 50%;left: 20%; cursor:pointer;z-index: 2" src="ui/izq.png" onclick="cambiarPelo(-1)">
+<img style="position: absolute; top: 50%;right: 20%; cursor:pointer;z-index: 2" src="ui/der.png" onclick="cambiarPelo(1)">
 </div>
 </div>
 
 <div id="ojos" style="position: relative;" onmouseover="mostrar(flechasOjos)" onmouseout="ocultar(flechasOjos)">
 <img style="display:block; margin:auto; cursor:pointer;max-width: 116vh;" src="ojos/1.jpg" class="imagen" id="imgOjos" onclick="cambiarOjos(1)" >
 <div id="flechasOjos" style="display: none; z-index: 2">
-<img style="position: absolute; top: 50%;left: 20%; cursor:pointer;z-index: 2" src="izq.png" onclick="cambiarOjos(-1)">
-<img style="position: absolute; top: 50%;right: 20%; cursor:pointer;z-index: 2" src="der.png" onclick="cambiarOjos(1)">
+<img style="position: absolute; top: 50%;left: 20%; cursor:pointer;z-index: 2" src="ui/izq.png" onclick="cambiarOjos(-1)">
+<img style="position: absolute; top: 50%;right: 20%; cursor:pointer;z-index: 2" src="ui/der.png" onclick="cambiarOjos(1)">
 </div>
 </div>
 
 <div id="cuerpo" style="position: relative;" onmouseover="mostrar(flechasCuerpo)" onmouseout="ocultar(flechasCuerpo)">
 <img style="display:block; margin:auto; cursor:pointer;max-width: 116vh;" src="cuerpo/1.jpg" class="imagen" id="imgCuerpo" onclick="cambiarCuerpo(1)" >
 <div id="flechasCuerpo" style="display: none; z-index: 2">
-<img style="position: absolute; top: 50%;left: 10%; cursor:pointer;z-index: 2" src="izq.png" onclick="cambiarCuerpo(-1)">
-<img style="position: absolute; top: 50%;right: 10%; cursor:pointer;z-index: 2" src="der.png" onclick="cambiarCuerpo(1)">
+<img style="position: absolute; top: 50%;left: 10%; cursor:pointer;z-index: 2" src="ui/izq.png" onclick="cambiarCuerpo(-1)">
+<img style="position: absolute; top: 50%;right: 10%; cursor:pointer;z-index: 2" src="ui/der.png" onclick="cambiarCuerpo(1)">
 </div>
 </div>
 
