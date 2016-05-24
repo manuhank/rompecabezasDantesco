@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta property="og:type"  content="article"/>
+<meta property="og:title"   content="El rompecabezas dantesco"/>
+<meta property="og:description"  content="Creá tu propia cabeza y compartila con tus amigos"/>
+<meta property="og:image" content="logo.png">
+<title>Rompecabezas Dantesco</title>
+</head>
+<body id="body" style="background-color:#010101; color: #ffffff" onload="cambiarPelo(0); cambiarOjos(0); cambiarCuerpo(0); cambiarColor(0)">
+
+
+<!--logo Dantesco-->
+<img style="position: absolute; left: 0px; z-index: 3; max-width:40%;" src="logo.png" id="logo">
+
+<!--barra lateral-->
+<div style="display: block; position: absolute; right: 0; top:0; bottom: 0;width: 25vh; max-width: 200px; max-height: 770px;z-index: 3; background-color: rgba(01,01,01,0.4); padding-right: 18px;padding-left: 18px;">
+<!--boton al azar--><tag></tag>
+<img style="display: block; cursor:pointer;margin: 15px auto 0 auto;max-width: 100%;" src="azr.png" id="botonazar" onclick="azar()">
+
+<div id="divisor" style="display: block;background-color: #ffffff; height: 2px; margin: 3vh 0px 3vh 0px;"></div>
+
+<img style="display: block; margin: 15px auto 0 auto;max-width: 100%;" src="colorea.png">
+<!--botones de color-->
+<div style="display: block; z-index: 2;margin: 20px 0 0 3%">
+<div style="display: inline-block; height: 5vh;width: 5vh;max-height: 45px;max-width: 45px;cursor:pointer;background-color: white; border-radius: 5vh;" onclick="cambiarColor('white')"></div>
+<div style="display: inline-block; height: 5vh;width: 5vh;max-height: 45px;max-width: 45px;cursor:pointer;background-color: red;border-radius: 24px;" onclick="cambiarColor('red')"></div>
+<div style="display: inline-block; height: 5vh;width: 5vh;max-height: 45px;max-width: 45px;cursor:pointer;background-color: orchid;border-radius: 24px;" onclick="cambiarColor('magenta')"></div>
+<div style="display: inline-block; height: 5vh;width: 5vh;max-height: 45px;max-width: 45px;cursor:pointer;background-color: blue;border-radius: 24px;" onclick="cambiarColor('blue')"></div>
+<div style="display: inline-block; height: 5vh;width: 5vh;max-height: 45px;max-width: 45px;cursor:pointer;background-color: mediumturquoise;border-radius: 24px;" onclick="cambiarColor('cyan')"></div>
+<div style="display: inline-block; height: 5vh;width: 5vh;max-height: 45px;max-width: 45px;cursor:pointer;background-color: greenyellow;border-radius: 24px;" onclick="cambiarColor('lawngreen')"></div>
+<div style="display: inline-block; height: 5vh;width: 5vh;max-height: 45px;max-width: 45px;cursor:pointer;background-color: yellow;border-radius: 24px;" onclick="cambiarColor('yellow')"></div>
+<div style="display: inline-block; height: 5vh;width: 5vh;max-height: 45px;max-width: 45px;cursor:pointer;background-color: darkorange;border-radius: 24px;" onclick="cambiarColor('orange')"></div>
+</div>
+<div id="divisor2" style="display: block;background-color: #ffffff; height: 2px; margin: 3vh 0px 3vh 0px;"></div>
+<div style="display: block; z-index: 2;margin: 20px 0 0 3%">
+<!--Integracion redes sociales-->
+<img style="display: block; margin: 0 auto 0 auto;max-width: 90%;" src="compartir.png" onclick="window.open(crearURL('https://www.facebook.com/sharer/sharer.php?u='), 'height=200,width=150')" alt="" />
+<div style="display: flex; margin: 0 auto 0 auto; justify-content: center;">
+<img style="display: inline-block;cursor: pointer; margin: 5px;height: 5vh;width: 5vh;max-height: 48px;max-width: 48px;;" src="compartir/Facebook.png" onclick="window.open(crearURL('https://www.facebook.com/sharer/sharer.php?u='), 'height=200,width=150')" alt="" />
+<img style="display: inline-block;cursor: pointer; margin: 5px; height: 5vh;width: 5vh;max-height: 48px;max-width: 48px;" src="compartir/Twitter.png" onclick="window.open(crearURL('https://twitter.com/intent/tweet?ref_src=twsrc%5Etfw&text=%C2%A1Est%C3%A1%20vivo!&tw_p=tweetbutton&url='))" alt="" />
+<img style="display: inline-block;cursor: pointer; margin: 5px;height: 5vh;width: 5vh;max-height: 48px;max-width: 48px;" src="compartir/Whatsapp.png" onclick="window.open(crearURL('whatsapp://send?text='))" alt="" />
+</div>
+</div>
+<!--logo mpfoto-->
+<a href="https://www.facebook.com/puentesfotografia/">
+<img style="display: block; position: absolute; bottom:2px; max-width:90%;" src="logoB.png" id="MPFoto">
+</a>
+</div>
+
+<!--rompecabezas-->
+<div style="position: relative; margin:auto;max-width: 900px;" >
+
+<!--coloreado-->
+<div id="coloreado" style="position: absolute;top: -5px; bottom: -5px; left: -5px; right: -5px;background-color: white;opacity: 0.4; z-index: 1;mix-blend-mode: multiply; pointer-events: none;"></div>
+
+<div id="pelo" style="position: relative; " onmouseover="mostrar(flechasPelo)" onmouseout="ocultar(flechasPelo)">
+<img style="display:block; margin:auto; max-width: 116vh;cursor:pointer; " src="pelo/1.jpg" class="imagen" id="imgPelo" onclick="cambiarPelo(1)" >
+<div id="flechasPelo" style="display: none;z-index: 2">
+<img style="position: absolute; top: 50%;left: 20%; cursor:pointer;z-index: 2" src="izq.png" onclick="cambiarPelo(-1)">
+<img style="position: absolute; top: 50%;right: 20%; cursor:pointer;z-index: 2" src="der.png" onclick="cambiarPelo(1)">
+</div>
+</div>
+
+<div id="ojos" style="position: relative;" onmouseover="mostrar(flechasOjos)" onmouseout="ocultar(flechasOjos)">
+<img style="display:block; margin:auto; cursor:pointer;max-width: 116vh;" src="ojos/1.jpg" class="imagen" id="imgOjos" onclick="cambiarOjos(1)" >
+<div id="flechasOjos" style="display: none; z-index: 2">
+<img style="position: absolute; top: 50%;left: 20%; cursor:pointer;z-index: 2" src="izq.png" onclick="cambiarOjos(-1)">
+<img style="position: absolute; top: 50%;right: 20%; cursor:pointer;z-index: 2" src="der.png" onclick="cambiarOjos(1)">
+</div>
+</div>
+
+<div id="cuerpo" style="position: relative;" onmouseover="mostrar(flechasCuerpo)" onmouseout="ocultar(flechasCuerpo)">
+<img style="display:block; margin:auto; cursor:pointer;max-width: 116vh;" src="cuerpo/1.jpg" class="imagen" id="imgCuerpo" onclick="cambiarCuerpo(1)" >
+<div id="flechasCuerpo" style="display: none; z-index: 2">
+<img style="position: absolute; top: 50%;left: 10%; cursor:pointer;z-index: 2" src="izq.png" onclick="cambiarCuerpo(-1)">
+<img style="position: absolute; top: 50%;right: 10%; cursor:pointer;z-index: 2" src="der.png" onclick="cambiarCuerpo(1)">
+</div>
+</div>
+
+</div>
+
+<script language="javascript">
+//Numero de caras incluidas
+var caras = 7
+//estas variables cargan sus valores de la URL, si esta disponible.
+var pelo = cargaURL("pelo", 1)
+var ojos = cargaURL("ojos", 1)
+var	cuerpo = cargaURL("cuerpo", 1)
+var color = cargaURL("color", 0)
+
+// Esta funcion se fija si hay variables en la URL, y llama a obtenerValor pararecuperar valores no nulos
+function cargaURL(x, esNum){
+	if (window.location.search.substring(1)){
+		if (obtenerValor(x, esNum)){
+			return obtenerValor(x, esNum);
+		} else {
+   			return 1;
+   		};
+	} else {
+   		return 1;
+   };
+};
+
+// Divide la url en variables y las devuelve como numero o string
+function obtenerValor(variable,esNum){
+   var url = window.location.search.substring(1);
+   var vars = url.split("&");
+   for (var i=0;i<vars.length;i++) {
+           var par = vars[i].split("=");
+           if(par[0] == variable){
+				if(esNum){
+				return parseInt(par[1]);
+				} else {
+					return par[1]
+				};
+			};
+	};
+   };
+
+//muestra y oculta las flechas   
+   function mostrar(x) {
+   x.style.display = 'block';
+   };
+   
+   function ocultar(x) {
+   x.style.display = 'none'
+   };
+
+//funcion para cambiar la imagen. -1 significa atras 1 adelante.   
+   function cambiarPelo(x) {
+	pelo += x
+	if (pelo > caras) {
+		pelo = 1
+	} else if (pelo < 1){
+		pelo = caras
+	};
+    imgPelo.src = "pelo/" + pelo.toString() + ".jpg";    
+   };
+   
+   function cambiarOjos(x) {
+	ojos += x;
+	if (ojos > caras) {
+		ojos = 1
+	} else if (ojos < 1){
+		ojos = caras
+	};
+    imgOjos.src = "ojos/" + ojos.toString() + ".jpg";    
+   };
+   
+   function cambiarCuerpo(x) {
+	cuerpo += x;
+	if (cuerpo > caras) {
+		cuerpo = 1
+	} else if (cuerpo < 1){
+		cuerpo = caras
+	};
+    imgCuerpo.src = "cuerpo/" + cuerpo.toString() + ".jpg";    
+   };
+//genera un numero natural al azar entre 1 y la cantidad de caras.   
+   
+   function cambiarColor(x) {
+   if (x) {
+   	color = x
+   };
+   coloreado.style.backgroundColor = color
+   };
+   
+   function azar() {
+   pelo = Math.round(Math.random() * (caras - 1)) + 1;
+   ojos = Math.round(Math.random() * (caras - 1)) + 1;
+   cuerpo = Math.round(Math.random() * (caras - 1)) + 1;
+   cambiarPelo(0);
+   cambiarOjos(0);
+   cambiarCuerpo(0);
+   };
+   
+function crearURL(x) {
+return x + window.location.href.split('?')[0] + "%3Fpelo%3D" + pelo.toString() + "%26ojos%3D" + ojos.toString() + "%26cuerpo%3D" + cuerpo.toString() + "%26color%3D" + color.toString();
+
+};
+</script>
+
+</body>
+</html>
